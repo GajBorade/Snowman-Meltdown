@@ -1,7 +1,9 @@
 import random
 import ascii_art
+
 # List of secret words
 WORDS = ["python", "git", "github", "snowman", "meltdown"]
+
 
 def get_random_word():
     """
@@ -41,6 +43,7 @@ def display_game_state(mistakes, secret_word, guessed_letters):
     print("Word: ", display_word)
     print("\n")
 
+
 def get_valid_guess(guessed_letters):
     """
     Prompts the user to enter a single alphabetical letter as a guess.
@@ -66,6 +69,26 @@ def get_valid_guess(guessed_letters):
             continue
 
         return guess
+
+
+def confirm_replay():
+    """
+    Prompts the user to confirm a replay.
+    Only accepts 'y' or 'n' (case-insensitive) as valid input.
+
+    :return: bool
+        True if user wants to replay, False otherwise.
+    """
+    while True:
+        replay = input("Do you want to play again? (y/n):").strip().lower()
+        if replay == "n":
+            return False
+
+        elif replay == "y":
+            return True
+
+        else:
+            print("Please enter either 'y' or 'n' (case-insensitive).")
 
 
 def play_game():
@@ -102,13 +125,15 @@ def play_game():
 
             display_game_state(mistakes, secret_word, guessed_letters)
 
-            if all (letter in guessed_letters for letter in secret_word):
+            if all(letter in guessed_letters for letter in secret_word):
                 print("Congratulations on saving the snowman!")
                 break
         else:
             mistakes += 1
             display_game_state(mistakes, secret_word, guessed_letters)
             if mistakes >= ascii_art.MAX_MISTAKES:
-                print("Sorry, you could not save the snowman!"
-                      " The secret word was:", secret_word)
+                print(
+                    "Sorry, you could not save the snowman!" " The secret word was:",
+                    secret_word,
+                )
                 break
