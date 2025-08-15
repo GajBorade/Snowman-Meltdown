@@ -1,6 +1,4 @@
 import game_logic
-import ascii_art
-
 
 def main():
     while True:
