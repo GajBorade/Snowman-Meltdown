@@ -82,6 +82,9 @@ def confirm_replay():
     while True:
         replay = input("Do you want to play again? (y/n):").strip().lower()
         if replay == "n":
+            print("Thank you for playing."
+                  "Have a nice day!"
+            )
             return False
 
         elif replay == "y":
